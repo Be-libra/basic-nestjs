@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post, UseGuards,Request } from '@nestjs/common';
 import { UserService } from './user.service';
-import {UserDto} from './user.dtos/user.dto'
+import {IUser} from './interfaces/user.interface'
+import { Observable } from 'rxjs';
 
 @Controller('user')
 export class UserController {
@@ -12,7 +13,7 @@ export class UserController {
   }
 
   @Post('create-user')
-  createUser(@Body()  User: UserDto) : UserDto{
+  createUser(@Body()  User: IUser ): Observable<IUser>{
     return this.userService.createUser(User)
   }
 
